@@ -2,13 +2,12 @@ import { useState } from "react";
 import { NavLink } from "react-router-dom";
 import AddFormIcon from "../icons/AddFormIcon";
 import PostForm from "./PostForm";
-import Hero from "./Hero";
 
 const NavBar = ({ addPost }) => {
   const [showForm, setShowForm] = useState(false);
 
   return (
-    <div className="navbar p-4 bg-neutral">
+    <div className="navbar p-4 bg-neutral fixed z-20">
       <div className="flex-1">
         <NavLink to="/home" className="font-bold text-2xl text-secondary">
           WILL'S BlOG
@@ -27,7 +26,6 @@ const NavBar = ({ addPost }) => {
           </div>
         </ul>
       </div>
-      <Hero />
     </div>
   );
 };
