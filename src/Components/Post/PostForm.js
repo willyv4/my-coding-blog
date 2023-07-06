@@ -1,15 +1,26 @@
 import { useState } from "react";
 import { v4 as uuid } from "uuid";
+import rootReducer from "../../redux/rootReducer";
+import { useDispatch } from "react-redux";
+import { ADD_POST } from "../../redux/actionTypes";
 
-const PostForm = ({ setShowForm, addPost }) => {
+const PostForm = ({ setShowForm }) => {
+  const dispatch = useDispatch();
   const INITIAL_STATE = {
     id: uuid(),
     title: "",
     description: "",
     body: "",
+    comments: [],
   };
 
   const [postData, setPostData] = useState(INITIAL_STATE);
+
+  const addPost = (postData) =>
+    dispatch({
+      type: ADD_POST,
+      payload: { ...postData },
+    });
 
   const handleChange = (evt) => {
     const { name, value } = evt.target;
@@ -23,6 +34,7 @@ const PostForm = ({ setShowForm, addPost }) => {
     e.preventDefault();
     setPostData(INITIAL_STATE);
     setShowForm(false);
+    console.log(postData);
     addPost(postData);
   };
 
