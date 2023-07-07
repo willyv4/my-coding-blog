@@ -1,7 +1,7 @@
 import { removeComment } from "../../redux/actionTypes";
 import { useDispatch } from "react-redux";
 
-const CommentList = ({ comments }) => {
+const CommentList = ({ postId, comments }) => {
   const dispatch = useDispatch();
 
   return (
@@ -13,7 +13,7 @@ const CommentList = ({ comments }) => {
               <div className="flex flex-row justify-between">
                 <div className="font-bold text-lg">Name: {c.name}</div>
                 <div
-                  onClick={() => dispatch(removeComment(c.id))}
+                  onClick={() => dispatch(removeComment(postId, c.id))}
                   className="bg-neutral text-white ml-20 font-bold text-xs h-5 w-5 text-center rounded-full pointer"
                 >
                   x

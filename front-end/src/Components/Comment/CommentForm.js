@@ -1,27 +1,33 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import CommentList from "./CommentList";
 import { v4 as uuid } from "uuid";
 import { useDispatch, useSelector } from "react-redux";
-import { addComment } from "../../redux/actionTypes";
+import { addComment, getAllComments } from "../../redux/actionTypes";
 
 const CommentForm = ({ postId }) => {
   const comments = useSelector((st) => st.comments);
   const dispatch = useDispatch();
-  const INITIAL_STATE = { postId: postId, id: uuid(), name: "", comment: "" };
+
+  console.log("COMMENTS WITH ID ", comments);
+
+  useEffect(() => {
+    if (postId) dispatch(getAllComments(postId));
+  }, [dispatch, postId]);
+
+  const INITIAL_STATE = { id: uuid(), name: "", comment: "" };
   const [commData, setCommData] = useState(INITIAL_STATE);
-  const realComments = comments.filter((comment) => comment.postId === postId);
 
   const handleChange = (evt) => {
     const { name, value } = evt.target;
     setCommData((prevData) => ({
       ...prevData,
+      postId: postId,
       [name]: value,
     }));
   };
 
   const handleSubmit = (evt) => {
     evt.preventDefault();
-    setCommData(commData);
     dispatch(addComment(commData));
     setCommData(INITIAL_STATE);
   };
@@ -29,10 +35,10 @@ const CommentForm = ({ postId }) => {
   return (
     <div>
       <h1 className="text-4xl font-bold mb-6 ml-2">Comments</h1>
-      <CommentList comments={realComments} />
+      <CommentList postId={postId} comments={comments} />
       <form onSubmit={handleSubmit} className="flex flex-wrap ml-2 mt-6">
-        <input type="hidden" defaultValue={commData.id} />
-        <input type="hidden" defaultValue={commData.postId} />
+        <input type="hidden" name="id" defaultValue={commData.id} />
+        <input type="hidden" name="postId" defaultValue={commData.postId} />
         <input
           type="text"
           name="name"

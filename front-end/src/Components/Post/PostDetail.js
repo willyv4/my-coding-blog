@@ -1,16 +1,17 @@
-import { useEffect, useState, useLayoutEffect, useRef } from "react";
+import React, { useEffect, useState, useLayoutEffect, useRef } from "react";
 import { useParams, useNavigate } from "react-router-dom";
-import CommentForm from "../Comment/CommentForm";
-import { useDispatch } from "react-redux";
-import { removePost } from "../../redux/actionTypes";
+import { useDispatch, useSelector } from "react-redux";
 import { useAuth } from "@clerk/clerk-react";
+import { removePost, getPost } from "../../redux/actionTypes";
+import CommentForm from "../Comment/CommentForm";
 import { willId } from "../../config";
-import { getPost } from "../../redux/actionTypes";
-import { useSelector } from "react-redux";
 
 const MIN_TEXTAREA_HEIGHT = 32;
 
 const PostDetail = () => {
+  const { userId } = useAuth();
+  const isWill = userId === willId;
+
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const [value, setValue] = useState("");
@@ -19,12 +20,13 @@ const PostDetail = () => {
   const { postid } = useParams();
   useEffect(() => {
     dispatch(getPost(postid));
-  }, []);
+  }, [dispatch, postid]);
 
-  const post = useSelector((st) => st.posts);
+  const post = useSelector(({ postDetail }) => postDetail);
 
   useEffect(() => {
-    !post ? navigate("/") : setValue(post?.body);
+    setValue(post?.body);
+    if (post?.error) return navigate("/");
   }, [post, navigate]);
 
   useLayoutEffect(() => {
@@ -35,8 +37,11 @@ const PostDetail = () => {
     )}px`;
   }, [value]);
 
-  const { userId } = useAuth();
-  const isWill = userId === willId ? true : false;
+  const handleDelete = (postId) => {
+    dispatch(removePost(postId));
+    return navigate("/");
+  };
+
   return (
     <div className="p-10 ">
       <h1 className="text-5xl font-bold mt-10 p-2">{post?.title}</h1>
@@ -50,7 +55,7 @@ const PostDetail = () => {
       <CommentForm postId={post?.id} />
       {isWill && (
         <button
-          onClick={() => dispatch(removePost(post?.id))}
+          onClick={() => handleDelete(post?.id)}
           className="btn btn-secondary fixed right-5 bottom-5"
         >
           Delete Post
