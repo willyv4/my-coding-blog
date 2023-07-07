@@ -1,11 +1,20 @@
 import { Link } from "react-router-dom";
-import { useSelector } from "react-redux";
+import { useSelector, useDispatch } from "react-redux";
+import { useEffect } from "react";
+import { getAllPosts } from "../../redux/actionTypes";
 
 const PostList = () => {
   const posts = useSelector((st) => st.posts);
+  const dispatch = useDispatch();
+
+  console.log(posts);
+
+  useEffect(() => {
+    dispatch(getAllPosts());
+  }, []);
 
   return (
-    <div className="flex flex-wrap w-full justify-center p-10 bg-neutral">
+    <div className="flex flex-wrap w-full justify-center p-10 bg-neutral pb-48">
       {posts.map((p) => (
         <Link
           to={`/${p.id}`}
