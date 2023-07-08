@@ -32,6 +32,8 @@ const CommentForm = ({ postId, isWill }) => {
     setCommData(INITIAL_STATE);
   };
 
+  console.log(comments);
+
   return (
     <div className="mt-14 -mb-20">
       <h1 className="text-4xl font-bold mb-6 ml-2">Comments</h1>

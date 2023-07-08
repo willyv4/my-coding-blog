@@ -11,8 +11,8 @@ const CommentList = ({ postId, comments, isWill }) => {
           <div className="mb-3 bg-gradient-to-r from-primary via-secondary to-accent opacity-60 w-fit p-[1px] rounded-md">
             <div className="bg-base-200 p-2 rounded-md w-fit">
               <div className="flex flex-row justify-between">
-                <div className="font-bold text-lg text-white">
-                  Name: {c.name}
+                <div className="font-bold text-lg text-white pr-2">
+                  Name: {c.username}
                 </div>
                 {isWill && (
                   <div

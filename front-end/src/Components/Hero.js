@@ -23,10 +23,10 @@ const Hero = () => {
               </code>
             </div>
           </div>
-        </div>
-        <div className="animate-bounce rounded-full -ml-4 mb-6 z-30 absolute bottom-0 mb-3 bg-gradient-to-r from-primary via-secondary to-accent opacity-60 w-fit p-[1px]">
-          <div className="bg-base-100 p-4 rounded-full">
-            <DownArrow />
+          <div className="animate-bounce rounded-full mb-6 z-30 absolute bottom-0 mb-3 bg-gradient-to-r from-primary via-secondary to-accent opacity-60 p-[1px]">
+            <div className="bg-base-100 p-4 rounded-full">
+              <DownArrow />
+            </div>
           </div>
         </div>
       </div>

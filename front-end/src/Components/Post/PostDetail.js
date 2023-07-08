@@ -1,12 +1,11 @@
-import React, { useEffect, useState, useLayoutEffect, useRef } from "react";
+import React, { useEffect, useState } from "react";
 import { useParams, useNavigate } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { useAuth } from "@clerk/clerk-react";
 import { removePost, getPost } from "../../redux/actionTypes";
 import CommentForm from "../Comment/CommentForm";
 import { willId } from "../../config";
-
-const MIN_TEXTAREA_HEIGHT = 32;
+import ReactMarkdown from "react-markdown";
 
 const PostDetail = () => {
   const { userId } = useAuth();
@@ -15,7 +14,6 @@ const PostDetail = () => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const [value, setValue] = useState("");
-  const textareaRef = useRef(null);
 
   const { postid } = useParams();
   useEffect(() => {
@@ -29,29 +27,23 @@ const PostDetail = () => {
     if (post?.error) return navigate("/");
   }, [post, navigate]);
 
-  useLayoutEffect(() => {
-    textareaRef.current.style.height = "inherit";
-    textareaRef.current.style.height = `${Math.max(
-      textareaRef.current.scrollHeight,
-      MIN_TEXTAREA_HEIGHT
-    )}px`;
-  }, [value]);
-
   const handleDelete = (postId) => {
     dispatch(removePost(postId));
     return navigate("/");
   };
 
+  console.log(value);
+
   return (
     <div className="bg-gradient-to-t from-base-100">
       <div className=" w-full p-[12%]">
-        <h1 className="text-5xl font-bold  p-2">{post?.title}</h1>
+        <h1 className="text-6xl font-bold  p-2">{post?.title}</h1>
         <h3 className="text-xl text-secondary/50  p-2">{post?.description}</h3>
-        <textarea
-          ref={textareaRef}
-          defaultValue={value}
-          className={`mt-4 h-${MIN_TEXTAREA_HEIGHT} w-full bg-transparent p-2 mb-4 outline-none resize-none`}
-        />
+        <div>
+          <div className="mt-4 bg-base-100 p-2 prose">
+            <ReactMarkdown>{value}</ReactMarkdown>
+          </div>
+        </div>
         <CommentForm postId={post?.id} isWill={isWill} />
       </div>
 
