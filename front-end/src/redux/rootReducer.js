@@ -7,6 +7,7 @@ import {
   UPDATE_POST,
   GET_POST,
   ALL_COMMENTS,
+  UPDATE_VOTE,
 } from "./actionTypes";
 
 function postsReducer(state = [], action) {
@@ -42,9 +43,7 @@ function postDetailReducer(state = null, action) {
   }
 }
 
-const storedComments = JSON.parse(localStorage.getItem("comments")) || [];
-
-function commentReducer(state = storedComments, action) {
+function commentReducer(state = [], action) {
   switch (action.type) {
     case ALL_COMMENTS:
       return [...action.payload];
@@ -60,10 +59,25 @@ function commentReducer(state = storedComments, action) {
   }
 }
 
+function voteReducer(state = null, action) {
+  switch (action.type) {
+    case UPDATE_VOTE:
+      console.log(action.payload, "VOTE REDUCER");
+      return (state = action.payload);
+
+    case "VOTE_ERROR":
+      return { ...state, error: true };
+
+    default:
+      return state;
+  }
+}
+
 const rootReducer = combineReducers({
   posts: postsReducer,
   postDetail: postDetailReducer,
   comments: commentReducer,
+  vote: voteReducer,
 });
 
 export default rootReducer;

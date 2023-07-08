@@ -15,7 +15,7 @@ const NavBar = () => {
       <div className="flex-1">
         <NavLink
           to="/"
-          className="font-bold text-xs sm:text-2xl text-primary ml-8"
+          className="font-bold text-xs sm:text-2xl text-primary ml-8 bg-gradient-to-r from-primary/90 via-secondary-90 to-accent/90 bg-clip-text text-transparent"
         >
           <code>
             <span className="font-bold">{"< "}WILL'S DEV </span>

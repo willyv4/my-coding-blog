@@ -43,16 +43,18 @@ const PostDetail = () => {
   };
 
   return (
-    <div className="p-10 ">
-      <h1 className="text-5xl font-bold mt-10 p-2">{post?.title}</h1>
-      <h3 className="text-xl text-secondary/50  p-2">{post?.description}</h3>
-      <textarea
-        readOnly
-        ref={textareaRef}
-        defaultValue={value}
-        className={`mt-4 bg-base-100 w-full h-${MIN_TEXTAREA_HEIGHT} p-2 mb-4 overflow-y-scroll outline-none resize-none`}
-      />
-      <CommentForm postId={post?.id} />
+    <div className="bg-gradient-to-t from-base-100">
+      <div className=" w-full p-[12%]">
+        <h1 className="text-5xl font-bold  p-2">{post?.title}</h1>
+        <h3 className="text-xl text-secondary/50  p-2">{post?.description}</h3>
+        <textarea
+          ref={textareaRef}
+          defaultValue={value}
+          className={`mt-4 h-${MIN_TEXTAREA_HEIGHT} w-full bg-transparent p-2 mb-4 outline-none resize-none`}
+        />
+        <CommentForm postId={post?.id} isWill={isWill} />
+      </div>
+
       {isWill && (
         <button
           onClick={() => handleDelete(post?.id)}

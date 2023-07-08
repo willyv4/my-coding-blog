@@ -9,7 +9,7 @@ const Hero = () => {
         className="hero h-screen"
         style={{ backgroundImage: `url(${mypic})` }}
       >
-        <div className="hero-overlay bg-opacity-90"></div>
+        <div className="hero-overlay bg-base-100 bg-opacity-90"></div>
         <div className="hero-content text-center text-neutral-content">
           <div className="max-w-md">
             <div className="mb-5 font-bold text-lg">
@@ -22,14 +22,15 @@ const Hero = () => {
                 </span>
               </code>
             </div>
-
-            <div className="animate-bounce btn btn-primary rounded-full -ml-6 mb-2 z-30 absolute bottom-0 justfiy-center">
-              <DownArrow />
-            </div>
+          </div>
+        </div>
+        <div className="animate-bounce rounded-full -ml-4 mb-6 z-30 absolute bottom-0 mb-3 bg-gradient-to-r from-primary via-secondary to-accent opacity-60 w-fit p-[1px]">
+          <div className="bg-base-100 p-4 rounded-full">
+            <DownArrow />
           </div>
         </div>
       </div>
-      <div className="h-48 bg-gradient-to-b from-transparent via-neutral/90 to-neutral -mt-48"></div>
+      <div className="h-48 bg-gradient-to-b from-transparent via-base-100/90 to-base-100 -mt-48"></div>
       <PostList />
     </>
   );

@@ -7,6 +7,8 @@ export const REMOVE_POST = "REMOVE_POST";
 export const UPDATE_POST = "UPDATE_POST";
 export const GET_POST = "GET_POST";
 export const ALL_COMMENTS = "ALL_COMMENTS";
+export const VOTE_POST = "VOTE_POST";
+export const UPDATE_VOTE = "UPDATE_VOTE";
 
 const API_URL = "http://localhost:5000";
 
@@ -46,7 +48,6 @@ export function getAllPosts() {
         payload: data,
       });
     } catch (error) {
-      console.log(error);
       dispatch(handleError(error.response.data));
     }
   };
@@ -62,7 +63,6 @@ export function removePost(postId) {
         payload: postId,
       });
     } catch (error) {
-      console.log(error);
       dispatch(dispatch(handleError(error.response.data)));
     }
   };
@@ -92,7 +92,6 @@ HANDLE COMMENTS HANDLE COMMENTS HANDLE COMMENTS
 
 export function addComment({ postId, id, name, comment }) {
   return async function thunk(dispatch) {
-    console.log(postId);
     try {
       const endPoint = `api/posts/${postId}/comments`;
       const { data } = await axios.post(`${API_URL}/${endPoint}`, {
@@ -106,7 +105,6 @@ export function addComment({ postId, id, name, comment }) {
         payload: data,
       });
     } catch (error) {
-      console.log(error);
       dispatch(handleError(error.response.data));
     }
   };
@@ -117,13 +115,11 @@ export function getAllComments(postId) {
     try {
       const endPoint = `api/posts/${postId}/comments`;
       const { data } = await axios.get(`${API_URL}/${endPoint}`);
-      console.log(data);
       dispatch({
         type: ALL_COMMENTS,
         payload: data,
       });
     } catch (error) {
-      console.log(error);
       dispatch(handleError(error.response.data));
     }
   };
@@ -139,8 +135,25 @@ export function removeComment(postId, commId) {
         payload: commId,
       });
     } catch (error) {
-      console.log(error);
       dispatch(handleError(error.response.data));
+    }
+  };
+}
+
+export function votePost(postId, direction) {
+  return async function thunk(dispatch) {
+    try {
+      const endpoint = `api/posts/${postId}/vote/${direction}`;
+      const { data } = await axios.post(`${API_URL}/${endpoint}`);
+      dispatch({
+        type: UPDATE_VOTE,
+        payload: { ...data, isLiked: direction },
+      });
+    } catch (error) {
+      dispatch({
+        type: "VOTE_ERROR",
+        error,
+      });
     }
   };
 }

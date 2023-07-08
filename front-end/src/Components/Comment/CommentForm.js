@@ -4,7 +4,7 @@ import { v4 as uuid } from "uuid";
 import { useDispatch, useSelector } from "react-redux";
 import { addComment, getAllComments } from "../../redux/actionTypes";
 
-const CommentForm = ({ postId }) => {
+const CommentForm = ({ postId, isWill }) => {
   const comments = useSelector((st) => st.comments);
   const dispatch = useDispatch();
 
@@ -33,9 +33,9 @@ const CommentForm = ({ postId }) => {
   };
 
   return (
-    <div>
+    <div className="mt-14 -mb-20">
       <h1 className="text-4xl font-bold mb-6 ml-2">Comments</h1>
-      <CommentList postId={postId} comments={comments} />
+      <CommentList postId={postId} comments={comments} isWill={isWill} />
       <form onSubmit={handleSubmit} className="flex flex-wrap ml-2 mt-6">
         <input type="hidden" name="id" defaultValue={commData.id} />
         <input type="hidden" name="postId" defaultValue={commData.postId} />
