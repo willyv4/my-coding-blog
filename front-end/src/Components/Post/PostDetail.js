@@ -8,7 +8,7 @@ import ReactMarkdown from "react-markdown";
 
 const PostDetail = () => {
   const { userId } = useAuth();
-  const isWill = userId === process.env.REACT_APP_WILLID;
+  const isWill = userId === process.env.REACT_APP_WILLID || process.env.WILLID;
 
   const dispatch = useDispatch();
   const navigate = useNavigate();

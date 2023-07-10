@@ -7,7 +7,7 @@ import Footer from "./Components/Footer";
 import AdminSignIn from "./Components/Auth/AdminSignIn";
 import AboutMe from "./Components/AboutMe";
 
-const clerkKey = process.env.REACT_APP_CLERK_PUB_KEY;
+const clerkKey = process.env.CLERK_KEY || process.env.REACT_APP_CLERK_PUB_KEY;
 
 function App() {
   return (
