@@ -4,12 +4,11 @@ import { useDispatch, useSelector } from "react-redux";
 import { useAuth } from "@clerk/clerk-react";
 import { removePost, getPost } from "../../redux/actionTypes";
 import CommentForm from "../Comment/CommentForm";
-import { willId } from "../../config";
 import ReactMarkdown from "react-markdown";
 
 const PostDetail = () => {
   const { userId } = useAuth();
-  const isWill = userId === willId;
+  const isWill = userId === process.env.willId;
 
   const dispatch = useDispatch();
   const navigate = useNavigate();

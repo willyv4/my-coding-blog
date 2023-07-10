@@ -10,7 +10,8 @@ export const ALL_COMMENTS = "ALL_COMMENTS";
 export const VOTE_POST = "VOTE_POST";
 export const UPDATE_VOTE = "UPDATE_VOTE";
 
-const API_URL = process.env.BACKEND_BLOGURL;
+const API_URL =
+  process.env.BACKEND_BLOGURL || "https://willsdevblog-backend.onrender.com";
 
 function handleError(error) {
   return {

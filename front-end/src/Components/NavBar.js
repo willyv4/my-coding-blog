@@ -3,12 +3,11 @@ import { NavLink } from "react-router-dom";
 import AddFormIcon from "../icons/AddFormIcon";
 import PostForm from "./Post/PostForm";
 import { useAuth, SignOutButton } from "@clerk/clerk-react";
-import { willId } from "../config";
 
 const NavBar = () => {
   const [showForm, setShowForm] = useState(false);
   const { userId } = useAuth();
-  const isWill = userId === willId ? true : false;
+  const isWill = userId === process.env.willId ? true : false;
 
   return (
     <div className="navbar  p-4 absolute z-30">

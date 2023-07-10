@@ -3,7 +3,6 @@ import Hero from "./Components/Hero";
 import NavBar from "./Components/NavBar";
 import PostDetail from "./Components/Post/PostDetail";
 import { ClerkProvider } from "@clerk/clerk-react";
-import { CLERK_KEY } from "./config.js";
 import Footer from "./Components/Footer";
 import AdminSignIn from "./Components/Auth/AdminSignIn";
 import AboutMe from "./Components/AboutMe";
@@ -11,7 +10,7 @@ import AboutMe from "./Components/AboutMe";
 function App() {
   return (
     <div>
-      <ClerkProvider publishableKey={CLERK_KEY}>
+      <ClerkProvider publishableKey={process.env.CLERK_KEY}>
         <BrowserRouter>
           <NavBar />
           <Routes>
