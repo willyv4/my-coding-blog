@@ -7,10 +7,12 @@ import Footer from "./Components/Footer";
 import AdminSignIn from "./Components/Auth/AdminSignIn";
 import AboutMe from "./Components/AboutMe";
 
+const clerkKey = process.env.REACT_APP_CLERK_PUB_KEY;
+
 function App() {
   return (
     <div>
-      <ClerkProvider publishableKey={process.env.CLERK_KEY}>
+      <ClerkProvider publishableKey={clerkKey}>
         <BrowserRouter>
           <NavBar />
           <Routes>

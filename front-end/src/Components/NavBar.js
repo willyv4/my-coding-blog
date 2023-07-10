@@ -7,7 +7,7 @@ import { useAuth, SignOutButton } from "@clerk/clerk-react";
 const NavBar = () => {
   const [showForm, setShowForm] = useState(false);
   const { userId } = useAuth();
-  const isWill = userId === process.env.willId ? true : false;
+  const isWill = userId === process.env.REACT_APP_WILLID ? true : false;
 
   return (
     <div className="navbar  p-4 absolute z-30">
