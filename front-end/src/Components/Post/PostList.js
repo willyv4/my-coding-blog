@@ -10,7 +10,7 @@ const PostList = () => {
 
   useEffect(() => {
     dispatch(getAllPosts());
-  }, []);
+  }, [dispatch]);
 
   return (
     <div className="flex flex-wrap w-full justify-center p-10 bg-base-100/90 pb-48">
