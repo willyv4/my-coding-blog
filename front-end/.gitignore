@@ -6,10 +6,13 @@
 .pnp.js
 config.js
 
+<<<<<<< HEAD
 
 
 
 
+=======
+>>>>>>> 63fa301 (.)
 # testing
 /coverage
 
@@ -18,7 +21,7 @@ config.js
 
 # misc
 .DS_Store
-.env
+
 .env.local
 .env.development.local
 .env.test.local
