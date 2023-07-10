@@ -10,11 +10,7 @@ export const ALL_COMMENTS = "ALL_COMMENTS";
 export const VOTE_POST = "VOTE_POST";
 export const UPDATE_VOTE = "UPDATE_VOTE";
 
-const API_URL = "http://localhost:5000";
-
-/*
-HANDLE POSTS HANDLE POSTS HANDLE POSTS
-*/
+const API_URL = process.env.BACKEND_BLOGURL;
 
 function handleError(error) {
   return {
