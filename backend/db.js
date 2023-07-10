@@ -2,8 +2,7 @@
 
 const { Client } = require("pg");
 
-const client = new Client("postgresql:///my_blog");
-console.log("###", client, "###");
+const client = new Client(process.env.MYBLOG_DB_URL || "postgresql:///my_blog");
 
 client.connect();
 
