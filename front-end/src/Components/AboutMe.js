@@ -1,8 +1,10 @@
 import meImg from "../assets/me.jpeg";
+import ScrollToTop from "../ScrollTop";
 
 const AboutMe = () => {
   return (
     <>
+      <ScrollToTop />
       <div className="p-[10%] pt-32 -mb-24">
         <div className="flex">
           <img
